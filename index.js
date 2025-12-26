@@ -382,13 +382,6 @@ if (process.env.TELEGRAM_TOKEN) {
 const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
 const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
 
-console.log("Environment check:");
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("DISCORD_TOKEN exists:", !!DISCORD_TOKEN);
-console.log("TELEGRAM_TOKEN exists:", !!TELEGRAM_TOKEN);
-console.log("DISCORD_TOKEN length:", DISCORD_TOKEN ? DISCORD_TOKEN.length : 0);
-console.log("TELEGRAM_TOKEN length:", TELEGRAM_TOKEN ? TELEGRAM_TOKEN.length : 0);
-
 if (DISCORD_TOKEN) {
   discordClient.login(DISCORD_TOKEN).catch(err => {
     console.error("Failed to login to Discord:", err.message);
