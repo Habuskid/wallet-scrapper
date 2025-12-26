@@ -62,7 +62,7 @@ function hasDiscordPermission(member) {
   );
 }
 
-discordClient.once("ready", () => {
+discordClient.once("clientReady", () => {
   console.log(`Discord Bot Ready! Logged in as ${discordClient.user.tag}`);
 });
 
@@ -375,16 +375,19 @@ if (process.env.TELEGRAM_TOKEN) {
 // ============================================
 // START BOTS
 // ============================================
-if (process.env.DISCORD_TOKEN) {
-  discordClient.login(process.env.DISCORD_TOKEN).catch(err => {
+const DISCORD_TOKEN = process.env.DISCORD_TOKEN;
+const TELEGRAM_TOKEN = process.env.TELEGRAM_TOKEN;
+
+if (DISCORD_TOKEN) {
+  discordClient.login(DISCORD_TOKEN).catch(err => {
     console.error("Failed to login to Discord:", err.message);
   });
 } else {
-  console.warn("DISCORD_TOKEN not found in .env");
+  console.warn("DISCORD_TOKEN not found - Discord bot will not start");
 }
 
-if (!process.env.TELEGRAM_TOKEN) {
-  console.warn("TELEGRAM_TOKEN not found in .env");
+if (!TELEGRAM_TOKEN) {
+  console.warn("TELEGRAM_TOKEN not found - Telegram bot will not start");
 }
 
-console.log("Multi-Platform Giveaway Bot Starting...");
+console.log("WalletScrapper Multi-Platform Bot Starting...");
